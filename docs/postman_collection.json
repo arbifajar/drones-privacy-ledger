@@ -1,0 +1,122 @@
+{
+  "info": {
+    "name": "Drone Privacy Ledger",
+    "_postman_id": "drone-privacy-ledger-collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Register Operator",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/api/operators/register",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "operators",
+            "register"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"operatorId\": \"op1\", \"publicKeyPem\": \"<PUT_PEM_HERE>\"}"
+        }
+      }
+    },
+    {
+      "name": "Submit Flight",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/api/flights",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "flights"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"operatorId\": \"op1\", \"droneId\": \"droneA\", \"timestamp\": \"2025-11-04T12:00:00Z\", \"logData\": \"{\\\"alt\\\":120,\\\"lat\\\":38.63,\\\"lon\\\":-90.20}\", \"signatureBase64\": \"<PUT_SIGNATURE_HERE>\"}"
+        }
+      }
+    },
+    {
+      "name": "List Flights",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/api/flights",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "flights"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Blocks",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/api/ledger/blocks",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "ledger",
+            "blocks"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Verify",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/api/ledger/verify",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "ledger",
+            "verify"
+          ]
+        }
+      }
+    }
+  ]
+}
