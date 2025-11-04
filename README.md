@@ -18,26 +18,6 @@ the reference app you shared, but simplified for **single-node local development
 
 ---
 
-## 🧱 Architecture
-
-```mermaid
-flowchart LR
-  subgraph Client
-    A[Operator Wallet
-(EC keypair)]
-  end
-  subgraph App[Spring Boot API]
-    B[Operator Service]
-    C[Flight Service]
-    D[Ledger Service
-(Hash-chained blocks)]
-    E[(H2 DB)]
-  end
-  A -->|register pubkey| B
-  A -->|signed log| C --> D --> E
-  D -->|verify chain| Client
-```
-
 **Data flow**
 
 1. Operator registers `operatorId` + `publicKeyPem`.
