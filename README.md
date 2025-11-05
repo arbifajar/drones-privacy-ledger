@@ -137,13 +137,3 @@ Import `docs/postman_collection.json` for ready‑made requests.
 - [ ] Simple web UI for visualize blocks/logs
 
 ---
-
-## 📸 Screenshots (how to recreate)
-
-1. H2 Console showing tables (`operators`, `flight_logs`, `ledger_blocks`).
-2. `GET /api/ledger/blocks` JSON in your browser or Postman.
-3. Mermaid diagram preview from `docs/architecture.md` (VS Code “Markdown Preview Mermaid Support”).
-
-Commit these screenshots under `docs/screenshots/` in your repo.
-
----
